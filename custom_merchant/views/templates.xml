@@ -1,0 +1,78 @@
+<odoo>
+    <data>
+        <template id="transaction_template" name="custom_merchant.transaction_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="doc" t-value="doc"/>
+                    <div class="page">
+                        <h2>Transaction Report</h2>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Transaction Date</th>
+                                    <th>Amount</th>
+                                    <th>Payment Method</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="doc.transaction_lines" t-as="line">
+                                    <td><t t-esc="line.transaction_date"/></td>
+                                    <td><t t-esc="line.amount"/></td>
+                                    <td><t t-esc="line.payment_method"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+
+        <template id="merchant_template" name="custom_merchant.merchant_template">
+            <t t-call="website.layout">
+
+                <!-- Add Font Awesome CSS and Tailwind CSS -->
+                <t t-set="title">Employee Portal</t>
+                <xpath expr="//head" position="inside">
+                    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+                          rel="stylesheet"/>
+                    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+                          rel="stylesheet"/>
+                </xpath>
+                <xpath expr="//body" position="inside">
+                    <div class="container mx-auto mt-5">
+                        <h1 class="text-2xl font-bold mb-4">Merchant Information</h1>
+                        <t t-call="custom_merchant.transaction_template"/>
+                    </div>
+                </xpath>
+                <t t-foreach="docs" t-as="doc">
+                    <t t-set="doc" t-value="doc"/>
+                    <div class="page">
+                        <h2>Merchant Information</h2>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Business Type</th>
+                                    <th>Payment Method</th>
+                                    <th>Location</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><t t-esc="doc.name"/></td>
+                                    <td><t t-esc="doc.business_type"/></td>
+                                    <td><t t-esc="doc.payment_method"/></td>
+                                    <td><t t-esc="doc.location"/></td>
+                                    <td><t t-esc="doc.email"/></td>
+                                    <td><t t-esc="doc.phone"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

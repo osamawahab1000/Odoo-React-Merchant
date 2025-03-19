@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_merchant_info,access.merchant.info,model_merchant_info,,1,1,1,1
+access_merchant_transaction,access.merchant.transaction,model_merchant_transaction,,1,1,1,1
